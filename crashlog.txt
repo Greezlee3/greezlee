@@ -1,0 +1,508 @@
+Date: 2020. 01. 08. 16:29
+Process: suggestd
+Bundle id: (null)
+Device: iPhone 8 Plus, iOS 12.4
+
+Exception type: EXC_SOFTWARE (SIGABRT)
+Exception subtype: EXC_UNIX_ABORT
+Exception codes: 0x0000000000010002, 0x0000000000000000
+Culprit: Unknown
+
+Triggered by thread: 1
+Thread name: Dispatch queue: com.apple.Ipsos.IPFeatureExtractor.IPSentenceFeatureExtractor
+Call stack:
+0  libsystem_kernel.dylib        0x00000001d39870dc 0x1d3964000 + 143580        // __pthread_kill
+1  libsystem_pthread.dylib      0x00000001d3a049b0 0x1d39fe000 + 27056          // pthread_kill$VARIANT$armv81
+2  libsystem_c.dylib            0x00000001d38dfea8 0x1d3885000 + 372392         // abort
+3  libsystem_malloc.dylib        0x00000001d39da684 0x1d39bd000 + 120452        // _malloc_put
+4  libsystem_malloc.dylib        0x00000001d39da8ac 0x1d39bd000 + 121004        // malloc_zone_error
+5  libsystem_malloc.dylib        0x00000001d39c3a2c 0x1d39bd000 + 27180         // szone_free
+6  libicucore.A.dylib            0x00000001d3ade664 0x1d3a64000 + 501348        // (null)
+7  libicucore.A.dylib            0x00000001d3b0196c 0x1d3a64000 + 645484        // (null)
+8  libicucore.A.dylib            0x00000001d3b01638 0x1d3a64000 + 644664        // (null)
+9  libicucore.A.dylib            0x00000001d3b001dc 0x1d3a64000 + 639452        // (null)
+10  libicucore.A.dylib            0x00000001d3a67370 0x1d3a64000 + 13168        // icu::BreakIterator::buildInstance(icu::Locale const&, char const*, UErrorCode&)
+11  libicucore.A.dylib            0x00000001d3a6793c 0x1d3a64000 + 14652        // icu::BreakIterator::makeInstance(icu::Locale const&, int, UErrorCode&)
+12  libicucore.A.dylib            0x00000001d3aae1f0 0x1d3a64000 + 303600       // ubrk_open
+13  CoreNLP                      0x00000001dad21200 0x1dacea000 + 225792    // CoreNLP::ICUTextBreakWithBuiltInRules::ICUTextBreakWithBuiltInRules(CoreNLP::TaggerContext const&, UBreakIteratorType, char const*)
+14  CoreNLP                      0x00000001dad00580 0x1dacea000 + 91520      // CoreNLP::DefaultSubWordTagger::resetICUTextBreak(__CFLocale const*)
+15  CoreNLP                      0x00000001dad003f0 0x1dacea000 + 91120      // CoreNLP::DefaultSubWordTagger::DefaultSubWordTagger(CoreNLP::TaggerContext const&, CoreNLP::StringBuffer const&, unsigned long, __CFURL const*)
+16  CoreNLP                      0x00000001dacf88d8 0x1dacea000 + 59608      // CoreNLP::WordDispatchTagger::WordDispatchTagger(CoreNLP::TaggerContext&, __CFURL const*)
+17  CoreNLP                      0x00000001dad39f6c 0x1dacea000 + 327532    // CoreNLP::WordTagger::createWordTagger(CoreNLP::TaggerContext&)
+18  CoreNLP                      0x00000001dad1deb8 0x1dacea000 + 212664    // NLTokenizerCreate
+19  CoreNLP                      0x00000001dacfe348 0x1dacea000 + 82760      // NLStringTokenizerCreate
+20  CoreFoundation                0x00000001d3e1a270 0x1d3cd2000 + 1344112      // CFStringTokenizerCreate
+21  ResponseKit                  0x00000001e77e9274 0x1e77de000 + 45684         // -[RKNLEventTokenizer initWithLanguageID:]
+22  ResponseKit                  0x00000001e7808cbc 0x1e77de000 + 175292        // -[RKEventIdentifier initWithLanguageID:]
+23  DataDetectorsNaturalLanguage  0x00000001f0e9cf40 0x1f0e79000 + 147264    // -[IPSentenceFeatureExtractor eventIdentifierForLanguageID:]
+24  DataDetectorsNaturalLanguage  0x00000001f0e9d52c 0x1f0e79000 + 148780       // -[IPSentenceFeatureExtractor featuresForTextString:inMessageUnit:context:]
+25  DataDetectorsNaturalLanguage  0x00000001f0e7ba04 0x1f0e79000 + 10756      // __75-[IPFeatureScanner featuresForTextString:inMessageUnit:extractors:context:]_block_invoke
+26  libdispatch.dylib            0x00000001d38297d4 0x1d37c9000 + 395220        // _dispatch_client_callout
+27  libdispatch.dylib            0x00000001d380abf4 0x1d37c9000 + 269300        // _dispatch_sync_invoke_and_complete
+28  DataDetectorsNaturalLanguage  0x00000001f0e7b6f8 0x1f0e79000 + 9976      // -[IPFeatureScanner featuresForTextString:inMessageUnit:extractors:context:]
+29  DataDetectorsNaturalLanguage  0x00000001f0e8c430 0x1f0e79000 + 78896        // -[IPFeatureTextMessageScanner sentenceFeaturesForMessageUnit:]
+30  DataDetectorsNaturalLanguage  0x00000001f0e8c738 0x1f0e79000 + 79672        // -[IPFeatureTextMessageScanner mainSentencePolarityFromMessageUnit:index:]
+31  DataDetectorsNaturalLanguage  0x00000001f0e8b618 0x1f0e79000 + 75288        // -[IPFeatureTextMessageScanner processScanOfMainMessageUnit:contextMessageUnits:]
+32  DataDetectorsNaturalLanguage  0x00000001f0e8a9c4 0x1f0e79000 + 72132      // -[IPFeatureTextMessageScanner doSynchronousScanWithCompletionHandler:]
+33  DataDetectorsNaturalLanguage  0x00000001f0e8a750 0x1f0e79000 + 71504      // __108-[IPFeatureTextMessageScanner scanEventsInMessageUnits:contextMessageUnits:synchronously:completionHandler:]_block_invoke
+34  DataDetectorsNaturalLanguage  0x00000001f0e8a5c0 0x1f0e79000 + 71104      // -[IPFeatureTextMessageScanner scanEventsInMessageUnits:contextMessageUnits:synchronously:completionHandler:]
+35  DataDetectorsNaturalLanguage  0x00000001f0e9ab08 0x1f0e79000 + 137992       // __90-[IPTextMessageConversation _scanEventsInLastMessageOnly:synchronously:completionHandler:]_block_invoke_2
+36  DataDetectorsNaturalLanguage  0x00000001f0e9a2a4 0x1f0e79000 + 135844       // -[IPTextMessageConversation _scanEventsInLastMessageOnly:synchronously:completionHandler:]
+37  DataDetectorsNaturalLanguage  0x00000001f0e9a080 0x1f0e79000 + 135296       // -[IPTextMessageConversation scanEventsInLastMessageOnly:synchronously:completionHandler:]
+38  CoreSuggestionsInternals      0x00000001f6ffa510 0x1f6e76000 + 1590544      // -[SGNaturalLanguageDissector dissectInternal:inContext:]
+39  CoreSuggestionsInternals      0x00000001f6fc2d1c 0x1f6e76000 + 1363228      // -[SGPipelineDissector dissect:inContext:]
+40  Foundation                    0x00000001d484fec8 0x1d473d000 + 1126088      // __NSBLOCKOPERATION_IS_CALLING_OUT_TO_A_BLOCK__
+41  Foundation                    0x00000001d475c2e0 0x1d473d000 + 127712       // -[NSBlockOperation main]
+42  Foundation                    0x00000001d475b7c8 0x1d473d000 + 124872       // -[__NSOperationInternal _start:]
+43  Foundation                    0x00000001d4851c4c 0x1d473d000 + 1133644      // __NSOQSchedule_f
+44  libdispatch.dylib            0x00000001d3828a38 0x1d37c9000 + 391736        // _dispatch_call_block_and_release
+45  libdispatch.dylib            0x00000001d38297d4 0x1d37c9000 + 395220        // _dispatch_client_callout
+46  libdispatch.dylib            0x00000001d3800c34 0x1d37c9000 + 228404        // _dispatch_continuation_pop$VARIANT$armv81
+47  libdispatch.dylib            0x00000001d3800314 0x1d37c9000 + 226068        // _dispatch_async_redirect_invoke
+48  libdispatch.dylib            0x00000001d380c9d4 0x1d37c9000 + 276948        // _dispatch_root_queue_drain
+49  libdispatch.dylib            0x00000001d380d248 0x1d37c9000 + 279112        // _dispatch_worker_thread2
+50  libsystem_pthread.dylib      0x00000001d3a0a1b4 0x1d39fe000 + 49588         // _pthread_wqthread
+51  libsystem_pthread.dylib      0x00000001d3a0ccd4 0x1d39fe000 + 60628         // start_wqthread
+
+Register values:
+PC: 0x1d39870dc        LR: 0x1d3a049b0        CPSR: 0x0
+x0: 0x0                x1: 0x0                x2: 0x0
+x3: 0x1d39fb2c9        x4: 0x0                x5: 0x0
+x6: 0x1                x7: 0x16f258b7c        x8: 0xc00
+x9: 0x1d3a04888        x10: 0x1d39fff18        x11: 0xa
+x12: 0x0                x13: 0x37              x14: 0xffff8007
+x15: 0x7f7e20          x16: 0x148              x17: 0xf4e9
+x18: 0x0                x19: 0x6                x20: 0x16f25b000
+x21: 0x1065dc028        x22: 0xb12b            x23: 0x16f25b0e0
+x24: 0x0                x25: 0x0                x26: 0x16efa3e24
+x27: 0x16f25b000        x28: 0x1
+
+Loaded images:
+0: /System/Library/PrivateFrameworks/CoreSuggestions.framework/suggestd
+1: /Library/MobileSubstrate/MobileSubstrate.dylib
+2: /usr/lib/substrate/SubstrateInserter.dylib
+3: /usr/lib/CepheiUI.framework/CepheiUI
+4: /usr/lib/substrate/SubstrateLoader.dylib
+5: /Library/MobileSubstrate/DynamicLibraries/Bloard.dylib
+6: /Library/MobileSubstrate/DynamicLibraries/CercubeServices.dylib
+7: /private/var/tmp/cy-bUMEnF.dylib
+8: /Library/MobileSubstrate/DynamicLibraries/Carrierizer.dylib
+9: /usr/lib/librocketbootstrap.dylib
+10: /Library/MobileSubstrate/DynamicLibraries/DoubleCut.dylib
+11: /Library/MobileSubstrate/DynamicLibraries/FloatingDockPlus.dylib
+12: /usr/lib/libsubstrate.dylib
+13: /usr/lib/libcolorpicker.dylib
+14: /usr/lib/libsparkapplist.dylib
+15: /Library/MobileSubstrate/DynamicLibraries/Relocate.dylib
+16: /Library/Frameworks/Cephei.framework/Cephei
+17: /Library/MobileSubstrate/DynamicLibraries/SimpleActivationActions.dylib
+18: /Library/MobileSubstrate/DynamicLibraries/__Cr4shed.dylib
+19: /Library/MobileSubstrate/DynamicLibraries/zzzzLiberty.dylib
+20: /usr/lib/libobjc-trampolines.dylib
+21: /usr/lib/libSystem.B.dylib
+22: /usr/lib/libc++.1.dylib
+23: /usr/lib/libc++abi.dylib
+24: /usr/lib/libobjc.A.dylib
+25: /usr/lib/system/libcache.dylib
+26: /usr/lib/system/libcommonCrypto.dylib
+27: /usr/lib/system/libcompiler_rt.dylib
+28: /usr/lib/system/libcopyfile.dylib
+29: /usr/lib/system/libcorecrypto.dylib
+30: /usr/lib/system/libdispatch.dylib
+31: /usr/lib/system/libdyld.dylib
+32: /usr/lib/system/liblaunch.dylib
+33: /usr/lib/system/libmacho.dylib
+34: /usr/lib/system/libremovefile.dylib
+35: /usr/lib/system/libsystem_asl.dylib
+36: /usr/lib/system/libsystem_blocks.dylib
+37: /usr/lib/system/libsystem_c.dylib
+38: /usr/lib/system/libsystem_configuration.dylib
+39: /usr/lib/system/libsystem_containermanager.dylib
+40: /usr/lib/system/libsystem_coreservices.dylib
+41: /usr/lib/system/libsystem_darwin.dylib
+42: /usr/lib/system/libsystem_dnssd.dylib
+43: /usr/lib/system/libsystem_info.dylib
+44: /usr/lib/system/libsystem_kernel.dylib
+45: /usr/lib/system/libsystem_m.dylib
+46: /usr/lib/system/libsystem_malloc.dylib
+47: /usr/lib/system/libsystem_networkextension.dylib
+48: /usr/lib/system/libsystem_notify.dylib
+49: /usr/lib/system/libsystem_platform.dylib
+50: /usr/lib/system/libsystem_pthread.dylib
+51: /usr/lib/system/libsystem_sandbox.dylib
+52: /usr/lib/system/libsystem_symptoms.dylib
+53: /usr/lib/system/libsystem_trace.dylib
+54: /usr/lib/system/libunwind.dylib
+55: /usr/lib/system/libxpc.dylib
+56: /usr/lib/libicucore.A.dylib
+57: /usr/lib/libz.1.dylib
+58: /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+59: /usr/lib/libbsm.0.dylib
+60: /usr/lib/libenergytrace.dylib
+61: /System/Library/Frameworks/IOKit.framework/Versions/A/IOKit
+62: /usr/lib/libxml2.2.dylib
+63: /usr/lib/libbz2.1.0.dylib
+64: /usr/lib/liblzma.5.dylib
+65: /usr/lib/libsqlite3.dylib
+66: /usr/lib/libMobileGestalt.dylib
+67: /System/Library/Frameworks/CFNetwork.framework/CFNetwork
+68: /System/Library/Frameworks/Foundation.framework/Foundation
+69: /System/Library/Frameworks/Security.framework/Security
+70: /System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration
+71: /usr/lib/libCRFSuite.dylib
+72: /usr/lib/libapple_nghttp2.dylib
+73: /usr/lib/libarchive.2.dylib
+74: /usr/lib/libboringssl.dylib
+75: /usr/lib/libcoretls.dylib
+76: /usr/lib/libcoretls_cfhelpers.dylib
+77: /usr/lib/liblangid.dylib
+78: /usr/lib/libnetwork.dylib
+79: /usr/lib/libpcap.A.dylib
+80: /usr/lib/libusrtcp.dylib
+81: /System/Library/Frameworks/IOSurface.framework/IOSurface
+82: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBLAS.dylib
+83: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLAPACK.dylib
+84: /System/Library/Frameworks/Accelerate.framework/Frameworks/vImage.framework/vImage
+85: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libSparseBLAS.dylib
+86: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvMisc.dylib
+87: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libBNNS.dylib
+88: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libLinearAlgebra.dylib
+89: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libQuadrature.dylib
+90: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libSparse.dylib
+91: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/libvDSP.dylib
+92: /System/Library/Frameworks/Accelerate.framework/Frameworks/vecLib.framework/vecLib
+93: /System/Library/Frameworks/Accelerate.framework/Accelerate
+94: /usr/lib/libcompression.dylib
+95: /System/Library/Frameworks/CoreGraphics.framework/CoreGraphics
+96: /System/Library/PrivateFrameworks/IOAccelerator.framework/IOAccelerator
+97: /System/Library/Frameworks/OpenGLES.framework/libCoreFSCache.dylib
+98: /System/Library/Frameworks/Metal.framework/Metal
+99: /System/Library/PrivateFrameworks/GraphicsServices.framework/GraphicsServices
+100: /System/Library/Frameworks/MobileCoreServices.framework/MobileCoreServices
+101: /System/Library/PrivateFrameworks/IOSurfaceAccelerator.framework/IOSurfaceAccelerator
+102: /System/Library/PrivateFrameworks/AppleJPEG.framework/AppleJPEG
+103: /System/Library/Frameworks/ImageIO.framework/ImageIO
+104: /System/Library/PrivateFrameworks/BaseBoard.framework/BaseBoard
+105: /System/Library/PrivateFrameworks/AssertionServices.framework/AssertionServices
+106: /System/Library/PrivateFrameworks/CorePhoneNumbers.framework/CorePhoneNumbers
+107: /System/Library/PrivateFrameworks/AppSupport.framework/AppSupport
+108: /System/Library/PrivateFrameworks/CrashReporterSupport.framework/CrashReporterSupport
+109: /System/Library/PrivateFrameworks/AggregateDictionary.framework/AggregateDictionary
+110: /usr/lib/libTelephonyUtilDynamic.dylib
+111: /System/Library/PrivateFrameworks/ProtocolBuffer.framework/ProtocolBuffer
+112: /System/Library/PrivateFrameworks/MobileKeyBag.framework/MobileKeyBag
+113: /System/Library/PrivateFrameworks/BackBoardServices.framework/BackBoardServices
+114: /System/Library/PrivateFrameworks/FrontBoardServices.framework/FrontBoardServices
+115: /System/Library/PrivateFrameworks/SpringBoardServices.framework/SpringBoardServices
+116: /System/Library/PrivateFrameworks/PowerLog.framework/PowerLog
+117: /System/Library/PrivateFrameworks/CommonUtilities.framework/CommonUtilities
+118: /usr/lib/liblockdown.dylib
+119: /System/Library/Frameworks/CoreData.framework/CoreData
+120: /System/Library/PrivateFrameworks/TCC.framework/TCC
+121: /usr/lib/libcupolicy.dylib
+122: /System/Library/Frameworks/CoreTelephony.framework/CoreTelephony
+123: /System/Library/Frameworks/Accounts.framework/Accounts
+124: /System/Library/PrivateFrameworks/AppleSauce.framework/AppleSauce
+125: /System/Library/PrivateFrameworks/DataMigration.framework/DataMigration
+126: /System/Library/PrivateFrameworks/Netrb.framework/Netrb
+127: /System/Library/PrivateFrameworks/PersistentConnection.framework/PersistentConnection
+128: /usr/lib/libmis.dylib
+129: /System/Library/PrivateFrameworks/ManagedConfiguration.framework/ManagedConfiguration
+130: /usr/lib/libReverseProxyDevice.dylib
+131: /usr/lib/libamsupport.dylib
+132: /System/Library/Frameworks/OpenGLES.framework/libCoreVMClient.dylib
+133: /System/Library/Frameworks/OpenGLES.framework/libCVMSPluginSupport.dylib
+134: /usr/lib/libutil.dylib
+135: /System/Library/Frameworks/OpenGLES.framework/libGLImage.dylib
+136: /System/Library/PrivateFrameworks/APFS.framework/APFS
+137: /System/Library/PrivateFrameworks/MediaKit.framework/MediaKit
+138: /usr/lib/updaters/libSERestoreInfo.dylib
+139: /System/Library/PrivateFrameworks/DiskImages.framework/DiskImages
+140: /System/Library/Frameworks/OpenGLES.framework/libGFXShared.dylib
+141: /usr/lib/libauthinstall.dylib
+142: /System/Library/PrivateFrameworks/IOMobileFramebuffer.framework/IOMobileFramebuffer
+143: /System/Library/Frameworks/OpenGLES.framework/OpenGLES
+144: /System/Library/PrivateFrameworks/ColorSync.framework/ColorSync
+145: /System/Library/Frameworks/CoreVideo.framework/CoreVideo
+146: /usr/lib/libCTGreenTeaLogger.dylib
+147: /System/Library/Frameworks/CoreAudio.framework/CoreAudio
+148: /System/Library/PrivateFrameworks/CoreAnalytics.framework/CoreAnalytics
+149: /System/Library/PrivateFrameworks/UserFS.framework/UserFS
+150: /System/Library/Frameworks/CoreMedia.framework/CoreMedia
+151: /usr/lib/libprotobuf-lite.dylib
+152: /usr/lib/libprotobuf.dylib
+153: /usr/lib/libAWDSupportFramework.dylib
+154: /System/Library/PrivateFrameworks/WirelessDiagnostics.framework/WirelessDiagnostics
+155: /System/Library/Frameworks/VideoToolbox.framework/VideoToolbox
+156: /System/Library/PrivateFrameworks/FontServices.framework/libFontParser.dylib
+157: /System/Library/PrivateFrameworks/FontServices.framework/FontServices
+158: /System/Library/Frameworks/CoreText.framework/CoreText
+159: /System/Library/PrivateFrameworks/IntlPreferences.framework/IntlPreferences
+160: /System/Library/PrivateFrameworks/RTCReporting.framework/RTCReporting
+161: /System/Library/PrivateFrameworks/CoreBrightness.framework/CoreBrightness
+162: /usr/lib/libAudioStatistics.dylib
+163: /System/Library/Frameworks/AudioToolbox.framework/AudioToolbox
+164: /System/Library/Frameworks/QuartzCore.framework/QuartzCore
+165: /System/Library/Frameworks/MediaAccessibility.framework/MediaAccessibility
+166: /usr/lib/libiconv.2.dylib
+167: /System/Library/PrivateFrameworks/NetworkStatistics.framework/NetworkStatistics
+168: /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSCore.framework/MPSCore
+169: /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSImage.framework/MPSImage
+170: /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSMatrix.framework/MPSMatrix
+171: /System/Library/PrivateFrameworks/CoreAUC.framework/CoreAUC
+172: /System/Library/Frameworks/MediaToolbox.framework/MediaToolbox
+173: /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSNeuralNetwork.framework/MPSNeuralNetwork
+174: /System/Library/Frameworks/MetalPerformanceShaders.framework/MetalPerformanceShaders
+175: /System/Library/PrivateFrameworks/FaceCore.framework/FaceCore
+176: /System/Library/PrivateFrameworks/GraphVisualizer.framework/GraphVisualizer
+177: /usr/lib/libFosl_dynamic.dylib
+178: /System/Library/Frameworks/CoreImage.framework/CoreImage
+179: /System/Library/Frameworks/CoreMotion.framework/CoreMotion
+180: /System/Library/Frameworks/CoreBluetooth.framework/CoreBluetooth
+181: /System/Library/PrivateFrameworks/PlugInKit.framework/PlugInKit
+182: /System/Library/PrivateFrameworks/Celestial.framework/Celestial
+183: /System/Library/PrivateFrameworks/Quagga.framework/Quagga
+184: /System/Library/Frameworks/AVFoundation.framework/Frameworks/AVFAudio.framework/AVFAudio
+185: /System/Library/Frameworks/AVFoundation.framework/AVFoundation
+186: /System/Library/PrivateFrameworks/CacheDelete.framework/CacheDelete
+187: /System/Library/PrivateFrameworks/StreamingZip.framework/StreamingZip
+188: /System/Library/PrivateFrameworks/CoreEmoji.framework/CoreEmoji
+189: /System/Library/PrivateFrameworks/CoreLocationProtobuf.framework/CoreLocationProtobuf
+190: /System/Library/PrivateFrameworks/SymptomDiagnosticReporter.framework/SymptomDiagnosticReporter
+191: /System/Library/PrivateFrameworks/GeoServices.framework/GeoServices
+192: /System/Library/PrivateFrameworks/MobileAsset.framework/MobileAsset
+193: /System/Library/PrivateFrameworks/Lexicon.framework/Lexicon
+194: /usr/lib/libcmph.dylib
+195: /System/Library/PrivateFrameworks/LanguageModeling.framework/LanguageModeling
+196: /System/Library/Frameworks/CoreLocation.framework/CoreLocation
+197: /System/Library/PrivateFrameworks/PhoneNumbers.framework/PhoneNumbers
+198: /usr/lib/libChineseTokenizer.dylib
+199: /usr/lib/libmecab_em.dylib
+200: /usr/lib/libThaiTokenizer.dylib
+201: /usr/lib/libgermantok.dylib
+202: /System/Library/PrivateFrameworks/CoreNLP.framework/CoreNLP
+203: /System/Library/PrivateFrameworks/MobileSpotlightIndex.framework/MobileSpotlightIndex
+204: /System/Library/Frameworks/CoreSpotlight.framework/CoreSpotlight
+205: /System/Library/Frameworks/JavaScriptCore.framework/JavaScriptCore
+206: /usr/lib/libheimdal-asn1.dylib
+207: /usr/lib/libate.dylib
+208: /System/Library/PrivateFrameworks/TextureIO.framework/TextureIO
+209: /System/Library/PrivateFrameworks/CoreUI.framework/CoreUI
+210: /System/Library/PrivateFrameworks/MobileIcons.framework/MobileIcons
+211: /System/Library/PrivateFrameworks/AppleFSCompression.framework/AppleFSCompression
+212: /System/Library/PrivateFrameworks/TextInput.framework/TextInput
+213: /System/Library/PrivateFrameworks/DataDetectorsCore.framework/DataDetectorsCore
+214: /System/Library/Frameworks/FileProvider.framework/FileProvider
+215: /System/Library/PrivateFrameworks/NLP.framework/NLP
+216: /System/Library/PrivateFrameworks/ProofReader.framework/ProofReader
+217: /usr/lib/libAccessibility.dylib
+218: /System/Library/PrivateFrameworks/WebCore.framework/Frameworks/libwebrtc.dylib
+219: /System/Library/PrivateFrameworks/ContactsFoundation.framework/ContactsFoundation
+220: /System/Library/PrivateFrameworks/WebCore.framework/WebCore
+221: /System/Library/PrivateFrameworks/WebKitLegacy.framework/WebKitLegacy
+222: /System/Library/PrivateFrameworks/DataAccessExpress.framework/DataAccessExpress
+223: /System/Library/PrivateFrameworks/AddressBookLegacy.framework/AddressBookLegacy
+224: /System/Library/PrivateFrameworks/ProtectedCloudStorage.framework/ProtectedCloudStorage
+225: /System/Library/Frameworks/UserNotifications.framework/UserNotifications
+226: /System/Library/PrivateFrameworks/AppleIDAuthSupport.framework/AppleIDAuthSupport
+227: /System/Library/PrivateFrameworks/AuthKit.framework/AuthKit
+228: /System/Library/Frameworks/UIKit.framework/UIKit
+229: /System/Library/PrivateFrameworks/DocumentManagerCore.framework/DocumentManagerCore
+230: /System/Library/PrivateFrameworks/HangTracer.framework/HangTracer
+231: /System/Library/PrivateFrameworks/PhysicsKit.framework/PhysicsKit
+232: /System/Library/PrivateFrameworks/StudyLog.framework/StudyLog
+233: /System/Library/PrivateFrameworks/UIFoundation.framework/UIFoundation
+234: /System/Library/Frameworks/CloudKit.framework/CloudKit
+235: /System/Library/PrivateFrameworks/IntentsFoundation.framework/IntentsFoundation
+236: /System/Library/Frameworks/Intents.framework/Intents
+237: /usr/lib/libresolv.9.dylib
+238: /System/Library/PrivateFrameworks/CoreDuetDebugLogging.framework/CoreDuetDebugLogging
+239: /usr/lib/libtidy.A.dylib
+240: /System/Library/PrivateFrameworks/CoreDuet.framework/CoreDuet
+241: /System/Library/PrivateFrameworks/CoreDuetContext.framework/CoreDuetContext
+242: /System/Library/PrivateFrameworks/CoreDuetDaemonProtocol.framework/CoreDuetDaemonProtocol
+243: /System/Library/PrivateFrameworks/IMFoundation.framework/IMFoundation
+244: /System/Library/PrivateFrameworks/vCard.framework/vCard
+245: /System/Library/Frameworks/Contacts.framework/Contacts
+246: /System/Library/PrivateFrameworks/DiagnosticLogCollection.framework/DiagnosticLogCollection
+247: /System/Library/PrivateFrameworks/Marco.framework/Marco
+248: /System/Library/PrivateFrameworks/MessageProtection.framework/MessageProtection
+249: /System/Library/PrivateFrameworks/StoreServices.framework/StoreServices
+250: /System/Library/PrivateFrameworks/Engram.framework/Engram
+251: /System/Library/PrivateFrameworks/IDSFoundation.framework/IDSFoundation
+252: /System/Library/PrivateFrameworks/CaptiveNetwork.framework/CaptiveNetwork
+253: /System/Library/PrivateFrameworks/EAP8021X.framework/EAP8021X
+254: /System/Library/PrivateFrameworks/MobileWiFi.framework/MobileWiFi
+255: /System/Library/PrivateFrameworks/OAuth.framework/OAuth
+256: /System/Library/PrivateFrameworks/CommonAuth.framework/CommonAuth
+257: /System/Library/PrivateFrameworks/Heimdal.framework/Heimdal
+258: /System/Library/Frameworks/GSS.framework/GSS
+259: /System/Library/PrivateFrameworks/ApplePushService.framework/ApplePushService
+260: /System/Library/PrivateFrameworks/AccountsDaemon.framework/AccountsDaemon
+261: /System/Library/PrivateFrameworks/AppleIDSSOAuthentication.framework/AppleIDSSOAuthentication
+262: /System/Library/PrivateFrameworks/AppleAccount.framework/AppleAccount
+263: /System/Library/PrivateFrameworks/CoreUtils.framework/CoreUtils
+264: /System/Library/PrivateFrameworks/IDS.framework/IDS
+265: /System/Library/PrivateFrameworks/MediaServices.framework/MediaServices
+266: /System/Library/PrivateFrameworks/MediaRemote.framework/MediaRemote
+267: /System/Library/PrivateFrameworks/UserManagement.framework/UserManagement
+268: /System/Library/PrivateFrameworks/MobileBluetooth.framework/MobileBluetooth
+269: /System/Library/PrivateFrameworks/Bom.framework/Bom
+270: /System/Library/PrivateFrameworks/FTAWD.framework/FTAWD
+271: /System/Library/PrivateFrameworks/FTServices.framework/FTServices
+272: /System/Library/PrivateFrameworks/ProactiveEventTracker.framework/ProactiveEventTracker
+273: /System/Library/PrivateFrameworks/ChunkingLibrary.framework/ChunkingLibrary
+274: /usr/lib/libnetworkextension.dylib
+275: /System/Library/Frameworks/AddressBook.framework/AddressBook
+276: /System/Library/Frameworks/NetworkExtension.framework/NetworkExtension
+277: /System/Library/PrivateFrameworks/SiriTTS.framework/SiriTTS
+278: /System/Library/PrivateFrameworks/SAObjects.framework/SAObjects
+279: /System/Library/PrivateFrameworks/VoiceServices.framework/VoiceServices
+280: /System/Library/PrivateFrameworks/AssistantServices.framework/AssistantServices
+281: /System/Library/PrivateFrameworks/AssetCacheServices.framework/AssetCacheServices
+282: /System/Library/PrivateFrameworks/NetworkServiceProxy.framework/NetworkServiceProxy
+283: /System/Library/PrivateFrameworks/MMCS.framework/MMCS
+284: /System/Library/PrivateFrameworks/BluetoothManager.framework/BluetoothManager
+285: /System/Library/PrivateFrameworks/CoreDAV.framework/CoreDAV
+286: /System/Library/PrivateFrameworks/iCalendar.framework/iCalendar
+287: /System/Library/PrivateFrameworks/PersonaKit.framework/PersonaKit
+288: /System/Library/PrivateFrameworks/CalendarFoundation.framework/CalendarFoundation
+289: /System/Library/PrivateFrameworks/PhotosFormats.framework/PhotosFormats
+290: /System/Library/PrivateFrameworks/CalendarDatabase.framework/CalendarDatabase
+291: /System/Library/PrivateFrameworks/CalendarDaemon.framework/CalendarDaemon
+292: /System/Library/PrivateFrameworks/CloudPhotoLibrary.framework/CloudPhotoLibrary
+293: /System/Library/Frameworks/EventKit.framework/EventKit
+294: /System/Library/PrivateFrameworks/AssetsLibraryServices.framework/AssetsLibraryServices
+295: /System/Library/PrivateFrameworks/DCIMServices.framework/DCIMServices
+296: /System/Library/PrivateFrameworks/CoreMediaStream.framework/CoreMediaStream
+297: /System/Library/PrivateFrameworks/XPCKit.framework/XPCKit
+298: /System/Library/PrivateFrameworks/CloudPhotoServices.framework/CloudPhotoServices
+299: /System/Library/PrivateFrameworks/CoreRecents.framework/CoreRecents
+300: /System/Library/PrivateFrameworks/MediaStream.framework/MediaStream
+301: /System/Library/PrivateFrameworks/PhotoLibraryServices.framework/PhotoLibraryServices
+302: /System/Library/PrivateFrameworks/PrototypeTools.framework/PrototypeTools
+303: /System/Library/PrivateFrameworks/CoreSymbolication.framework/CoreSymbolication
+304: /System/Library/PrivateFrameworks/SearchFoundation.framework/SearchFoundation
+305: /usr/lib/libtzupdate.dylib
+306: /System/Library/PrivateFrameworks/Preferences.framework/Preferences
+307: /System/Library/PrivateFrameworks/CoreTime.framework/CoreTime
+308: /System/Library/PrivateFrameworks/CoreAppleCVA.framework/CoreAppleCVA
+309: /System/Library/PrivateFrameworks/DifferentialPrivacy.framework/DifferentialPrivacy
+310: /System/Library/PrivateFrameworks/AppleCVA.framework/AppleCVA
+311: /System/Library/PrivateFrameworks/Montreal.framework/Montreal
+312: /System/Library/PrivateFrameworks/Espresso.framework/Espresso
+313: /System/Library/PrivateFrameworks/MobileSystemServices.framework/MobileSystemServices
+314: /System/Library/Frameworks/CoreML.framework/CoreML
+315: /System/Library/PrivateFrameworks/CoreOptimization.framework/CoreOptimization
+316: /System/Library/PrivateFrameworks/SafariCore.framework/SafariCore
+317: /System/Library/PrivateFrameworks/CorePrediction.framework/CorePrediction
+318: /System/Library/PrivateFrameworks/ContactsDonation.framework/ContactsDonation
+319: /System/Library/PrivateFrameworks/Futhark.framework/Futhark
+320: /System/Library/PrivateFrameworks/NanoRegistry.framework/NanoRegistry
+321: /System/Library/PrivateFrameworks/BaseBoardUI.framework/BaseBoardUI
+322: /System/Library/PrivateFrameworks/CorePDF.framework/CorePDF
+323: /System/Library/Frameworks/Vision.framework/Vision
+324: /System/Library/Frameworks/WebKit.framework/WebKit
+325: /System/Library/PrivateFrameworks/ConstantClasses.framework/ConstantClasses
+326: /System/Library/PrivateFrameworks/CertUI.framework/CertUI
+327: /System/Library/PrivateFrameworks/WebBookmarks.framework/WebBookmarks
+328: /System/Library/PrivateFrameworks/NanoPreferencesSync.framework/NanoPreferencesSync
+329: /System/Library/PrivateFrameworks/MobileInstallation.framework/MobileInstallation
+330: /System/Library/PrivateFrameworks/EmailAddressing.framework/EmailAddressing
+331: /System/Library/PrivateFrameworks/MessageSupport.framework/MessageSupport
+332: /System/Library/PrivateFrameworks/InternationalTextSearch.framework/InternationalTextSearch
+333: /System/Library/PrivateFrameworks/MIME.framework/MIME
+334: /System/Library/PrivateFrameworks/ProactiveSupport.framework/ProactiveSupport
+335: /System/Library/PrivateFrameworks/Notes.framework/Notes
+336: /System/Library/PrivateFrameworks/CalendarUIKit.framework/CalendarUIKit
+337: /System/Library/PrivateFrameworks/DataAccess.framework/DataAccess
+338: /System/Library/Frameworks/AssetsLibrary.framework/AssetsLibrary
+339: /System/Library/Frameworks/EventKitUI.framework/EventKitUI
+340: /System/Library/Frameworks/Social.framework/Social
+341: /System/Library/PrivateFrameworks/CoreFollowUp.framework/CoreFollowUp
+342: /System/Library/PrivateFrameworks/CoreSuggestions.framework/CoreSuggestions
+343: /System/Library/PrivateFrameworks/MailServices.framework/MailServices
+344: /System/Library/PrivateFrameworks/MailSupport.framework/MailSupport
+345: /System/Library/PrivateFrameworks/Message.framework/Message
+346: /System/Library/PrivateFrameworks/CoreParsec.framework/CoreParsec
+347: /System/Library/PrivateFrameworks/ContactsAutocomplete.framework/ContactsAutocomplete
+348: /System/Library/PrivateFrameworks/MobileObliteration.framework/MobileObliteration
+349: /System/Library/PrivateFrameworks/SpringBoardFoundation.framework/SpringBoardFoundation
+350: /System/Library/PrivateFrameworks/SetupAssistantSupport.framework/SetupAssistantSupport
+351: /System/Library/PrivateFrameworks/SetupAssistant.framework/SetupAssistant
+352: /System/Library/PrivateFrameworks/DistributedEvaluation.framework/DistributedEvaluation
+353: /System/Library/PrivateFrameworks/LatentSemanticMapping.framework/LatentSemanticMapping
+354: /System/Library/PrivateFrameworks/LinguisticData.framework/LinguisticData
+355: /System/Library/PrivateFrameworks/ResponseKit.framework/ResponseKit
+356: /System/Library/Frameworks/MetalKit.framework/MetalKit
+357: /System/Library/PrivateFrameworks/GenerationalStorage.framework/GenerationalStorage
+358: /System/Library/PrivateFrameworks/PersonalizationPortrait.framework/PersonalizationPortrait
+359: /System/Library/Frameworks/PDFKit.framework/PDFKit
+360: /System/Library/PrivateFrameworks/Pasteboard.framework/Pasteboard
+361: /System/Library/PrivateFrameworks/MobileDeviceLink.framework/MobileDeviceLink
+362: /System/Library/PrivateFrameworks/MobileBackup.framework/MobileBackup
+363: /System/Library/PrivateFrameworks/SafariSafeBrowsing.framework/SafariSafeBrowsing
+364: /System/Library/PrivateFrameworks/DuetActivityScheduler.framework/DuetActivityScheduler
+365: /System/Library/PrivateFrameworks/AppConduit.framework/AppConduit
+366: /System/Library/Frameworks/CallKit.framework/CallKit
+367: /System/Library/PrivateFrameworks/LoggingSupport.framework/LoggingSupport
+368: /System/Library/PrivateFrameworks/kperf.framework/kperf
+369: /System/Library/PrivateFrameworks/CellularPlanManager.framework/CellularPlanManager
+370: /System/Library/PrivateFrameworks/kperfdata.framework/kperfdata
+371: /usr/lib/libdscsym.dylib
+372: /System/Library/PrivateFrameworks/ktrace.framework/ktrace
+373: /System/Library/PrivateFrameworks/CloudDocs.framework/CloudDocs
+374: /System/Library/PrivateFrameworks/FoundInAppsPlugins.framework/FoundInAppsPlugins
+375: /System/Library/PrivateFrameworks/ProactiveML.framework/ProactiveML
+376: /System/Library/PrivateFrameworks/BiometricKit.framework/BiometricKit
+377: /System/Library/PrivateFrameworks/CTCarrierSpace.framework/CTCarrierSpace
+378: /System/Library/PrivateFrameworks/DataDetectorsNaturalLanguage.framework/DataDetectorsNaturalLanguage
+379: /System/Library/PrivateFrameworks/DeviceIdentity.framework/DeviceIdentity
+380: /System/Library/PrivateFrameworks/PPTopicExtractionPlugin.framework/PPTopicExtractionPlugin
+381: /System/Library/PrivateFrameworks/Rapport.framework/Rapport
+382: /System/Library/PrivateFrameworks/SignpostSupport.framework/SignpostSupport
+383: /System/Library/PrivateFrameworks/SpotlightReceiver.framework/SpotlightReceiver
+384: /System/Library/PrivateFrameworks/UserActivity.framework/UserActivity
+385: /usr/lib/libMatch.1.dylib
+386: /usr/lib/libtailspin.dylib
+387: /System/Library/PrivateFrameworks/CoreServicesInternal.framework/CoreServicesInternal
+388: /System/Library/PrivateFrameworks/CoreSuggestionsInternals.framework/CoreSuggestionsInternals
+389: /System/Library/PrivateFrameworks/Email.framework/Email
+390: /System/Library/PrivateFrameworks/EmailCore.framework/EmailCore
+391: /System/Library/PrivateFrameworks/FontServices.framework/libGSFontCache.dylib
+392: /System/Library/PrivateFrameworks/InternationalSupport.framework/InternationalSupport
+393: /System/Library/PrivateFrameworks/NLFoundInAppsPlugin.framework/NLFoundInAppsPlugin
+394: /System/Library/PrivateFrameworks/SignpostCollection.framework/SignpostCollection
+395: /System/Library/PrivateFrameworks/SyncedDefaults.framework/SyncedDefaults
+396: /System/Library/PrivateFrameworks/XCTTargetBootstrap.framework/XCTTargetBootstrap
+397: /System/Library/PrivateFrameworks/libEDR.framework/libEDR
+398: /usr/lib/libMobileGestaltExtensions.dylib
+399: /usr/lib/libcharset.1.dylib
+400: /usr/lib/libsandbox.1.dylib
+401: /System/Library/Frameworks/CoreServices.framework/CoreServices
+402: /System/Library/Frameworks/MetalPerformanceShaders.framework/Frameworks/MPSRayIntersector.framework/MPSRayIntersector
+403: /System/Library/Frameworks/Network.framework/Network
+404: /System/Library/PrivateFrameworks/ANEServices.framework/ANEServices
+405: /System/Library/PrivateFrameworks/ASEProcessing.framework/ASEProcessing
+406: /System/Library/PrivateFrameworks/AXCoreUtilities.framework/AXCoreUtilities
+407: /System/Library/PrivateFrameworks/AppleMediaServices.framework/AppleMediaServices
+408: /System/Library/PrivateFrameworks/AppleNeuralEngine.framework/AppleNeuralEngine
+409: /System/Library/PrivateFrameworks/C2.framework/C2
+410: /System/Library/PrivateFrameworks/DocumentManager.framework/DocumentManager
+411: /System/Library/PrivateFrameworks/IdleTimerServices.framework/IdleTimerServices
+412: /System/Library/PrivateFrameworks/MetadataUtilities.framework/MetadataUtilities
+413: /System/Library/PrivateFrameworks/OTSVG.framework/OTSVG
+414: /System/Library/PrivateFrameworks/PersonalizationPortraitInternals.framework/PersonalizationPortraitInternals
+415: /System/Library/PrivateFrameworks/PhotoFoundation.framework/PhotoFoundation
+416: /System/Library/PrivateFrameworks/ROCKit.framework/ROCKit
+417: /System/Library/PrivateFrameworks/RemoteTextInput.framework/RemoteTextInput
+418: /System/Library/PrivateFrameworks/SampleAnalysis.framework/SampleAnalysis
+419: /System/Library/PrivateFrameworks/SiriInstrumentation.framework/SiriInstrumentation
+420: /System/Library/PrivateFrameworks/StatsKit.framework/StatsKit
+421: /System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore
+422: /System/Library/PrivateFrameworks/UIKitServices.framework/UIKitServices
+423: /System/Library/PrivateFrameworks/URLFormatting.framework/URLFormatting
+424: /usr/lib/libstdc++.6.dylib
+
+
+{"ProcessBundleID":"","ProcessName":"suggestd","Culprit":"Unknown"}
